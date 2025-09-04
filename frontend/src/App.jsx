@@ -75,13 +75,7 @@
 
           <div className="buttons">
             <button type="submit">Short it</button>
-            <button
-              type="button"
-              onClick={() => handleCopy(shortLink)}
-              disabled={!shortLink}
-            >
-              Copy
-            </button>
+           
           </div>
 
           <div className="validity">
@@ -108,25 +102,27 @@
           {recentUrls.length === 0 ? (
             <p>No URLs yet.</p>
           ) : (
-            <ul>
-              {recentUrls.map((item) => (
-                <li key={item._id}>
-                  <a href={item.longurl} target="_blank" rel="noreferrer">
-                    {item.longurl}
-                  </a>{" "}
-                  →{" "}
-                  <span
-                    className="shortcode"
-                    onClick={() =>
-                      handleCopy(`http://localhost:4000/${item.ShortCode}`)
-                    }
-                    style={{ cursor: "pointer", color: "blue" }}
-                  >
-                    {`http://localhost:4000/${item.ShortCode}`}
-                  </span>
-                </li>
-              ))}
-            </ul>
+          <ul>
+  {recentUrls.map((item) => (
+    <li key={item._id}>
+      <a
+        href={`http://localhost:4000/${item.ShortCode}`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {`http://localhost:4000/${item.ShortCode}`}
+      </a>
+      <button
+        onClick={() =>
+          handleCopy(`http://localhost:4000/${item.ShortCode}`)
+        }
+      >
+        Copy
+      </button>
+    </li>
+  ))}
+</ul>
+
           )}
         </div>
       </div>
