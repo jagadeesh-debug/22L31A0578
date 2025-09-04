@@ -1,28 +1,70 @@
 #root {
-  max-width: 1280px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 1rem;
+  font-family: system-ui, sans-serif;
 }
 
-.container{
-  height: 100vh;
-  width: 100vw;
+.container {
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.form{
-  display: flex;
-  gap: 1em;
   flex-direction: column;
 }
-.buttons{
-  padding: 1em;
+
+.form {
   display: flex;
-  gap: 1em;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 400px;
 }
-.time{
-  gap:1em;
-  display:flex
+
+input, button, select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+button {
+  cursor: pointer;
+  background: #333;
+  color: white;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: #555;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.time {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+.recent {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.recent h3 {
+  margin-bottom: 0.5rem;
+}
+
+.recent ul {
+  list-style: none;
+  padding: 0;
+}
+
+.recent li {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
 }
