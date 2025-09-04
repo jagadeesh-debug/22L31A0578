@@ -1,9 +1,11 @@
 import express from "express";
+import cors from "cors";
 import { randomBytes } from "crypto";
 import urls from "../db/model.js";
 
 const app = express();
 app.use(express.json());
+app.use(cors()); 
 
 function generateShortcode() {
   return randomBytes(3).toString("hex");
@@ -36,29 +38,15 @@ app.post("/shorturls", async (req, res) => {
   await newUrl.save();
 
   res.status(201).json({
-    shortLink: `http://localhost:3000/${shortcode}`,
+    shortLink: `http://localhost:4000/${shortcode}`, 
     expiry: expiryDate,
   });
 });
 
-app.get("/:shortcode", async (req, res) => {
-  const { shortcode } = req.params;
-  const entry = await urls.findOne({ ShortCode: shortcode });
-
-  if (!entry) {
-    return res.status(404).json({ error: "Short URL not found" });
-  }
-
-  if (new Date() > entry.expiryDate) {
-    await urls.deleteOne({ ShortCode: shortcode });
-    return res.status(410).json({ error: "Short URL expired" });
-  }
-
-  res.json({
-    shortLink: `http://localhost:3000/${shortcode}`,
-    originalUrl: entry.longurl,
-    expiry: entry.expiryDate,
-  });
+app.get("/shorturls", async (req, res) => {
+  const allUrls = await urls.find({});
+  res.json(allUrls);
 });
 
+app.listen(4000);
 export default app;
