@@ -1,16 +1,12 @@
-const urlSchema = new mongoose.schema({
-        longurl:{
-            type:String,
-            required:true
-        },
-        validity:{
-            type:Number
-        },
-        expiryDate:{
-            type:Date,
+import mongoose from "mongoose";
 
-        },
-        ShortCode:{
-            type:String,
-        }
-})
+const urlSchema = new mongoose.Schema({
+  longurl: { type: String, required: true },
+  validity: { type: Number },
+  expiryDate: { type: Date },
+  ShortCode: { type: String }
+});
+
+const urls = mongoose.model("URL", urlSchema);
+
+export default urls;
